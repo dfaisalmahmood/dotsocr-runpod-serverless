@@ -46,5 +46,8 @@ RUN --mount=type=secret,id=HF_TOKEN,required=false \
     python3 /src/download_model.py; \
     fi
 
+# Patch vllm entrypoint to import custom DotsOCR modeling code
+RUN sed -i '/^from vllm\.entrypoints\.cli\.main import main/a from src.dotsocr import modeling_dots_ocr_vlm' $(which vllm)
+
 # Start the handler
 CMD ["python3", "/src/handler.py"]
