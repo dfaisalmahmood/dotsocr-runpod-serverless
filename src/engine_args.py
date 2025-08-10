@@ -16,14 +16,15 @@ RENAME_ARGS_MAP = {
 DEFAULT_ARGS = {
     "disable_log_stats": os.getenv('DISABLE_LOG_STATS', 'False').lower() == 'true',
     "disable_log_requests": os.getenv('DISABLE_LOG_REQUESTS', 'False').lower() == 'true',
-    "gpu_memory_utilization": float(os.getenv('GPU_MEMORY_UTILIZATION', 0.95)),
+    # TODO: modify GPU_MEMORY_UTILIZATION to 0.95 before pushing to production
+    "gpu_memory_utilization": float(os.getenv('GPU_MEMORY_UTILIZATION', 0.75)),
     "pipeline_parallel_size": int(os.getenv('PIPELINE_PARALLEL_SIZE', 1)),
     "tensor_parallel_size": int(os.getenv('TENSOR_PARALLEL_SIZE', 1)),
     "served_model_name": os.getenv('SERVED_MODEL_NAME', None),
     "tokenizer": os.getenv('TOKENIZER', None),
     "skip_tokenizer_init": os.getenv('SKIP_TOKENIZER_INIT', 'False').lower() == 'true',
     "tokenizer_mode": os.getenv('TOKENIZER_MODE', 'auto'),
-    "trust_remote_code": os.getenv('TRUST_REMOTE_CODE', 'False').lower() == 'true',
+    "trust_remote_code": os.getenv('TRUST_REMOTE_CODE', 'True').lower() == 'true',
     "download_dir": os.getenv('DOWNLOAD_DIR', None),
     "load_format": os.getenv('LOAD_FORMAT', 'auto'),
     "config_format": os.getenv('CONFIG_FORMAT', 'auto'),
@@ -68,6 +69,7 @@ DEFAULT_ARGS = {
     "long_lora_scaling_factors": tuple(map(float, os.getenv('LONG_LORA_SCALING_FACTORS', '').split(','))) if os.getenv('LONG_LORA_SCALING_FACTORS') else None,
     "lora_dtype": os.getenv('LORA_DTYPE', 'auto'),
     "max_cpu_loras": int(os.getenv('MAX_CPU_LORAS', 0)) or None,
+    # TODO: use device="cuda" if not working
     "device": os.getenv('DEVICE', 'auto'),
     "ray_workers_use_nsight": os.getenv('RAY_WORKERS_USE_NSIGHT', 'False').lower() == 'true',
     "num_gpu_blocks_override": int(os.getenv('NUM_GPU_BLOCKS_OVERRIDE', 0)) or None,

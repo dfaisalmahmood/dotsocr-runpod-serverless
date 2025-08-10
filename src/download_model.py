@@ -8,7 +8,8 @@ from utils import timer_decorator
 
 BASE_DIR = "/" 
 TOKENIZER_PATTERNS = [["*.json", "tokenizer*"]]
-MODEL_PATTERNS = [["*.safetensors"], ["*.bin"], ["*.pt"]]
+# DotsOCR patch
+MODEL_PATTERNS = [["*.safetensors"], ["*.bin"], ["*.pt"], ["*.py"], ["*.txt"]]
 
 def setup_env():
     if os.getenv("TESTING_DOWNLOAD") == "1":

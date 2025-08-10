@@ -1,0 +1,12 @@
+{
+  "input": {
+    "openai_route": true,
+    "messages": [
+      { "role": "system", "content": "You are a helpful assistant." },
+      { "role": "user", "content": "Hello, who won the world series in 2020?" }
+    ],
+    "max_tokens": 50,
+    "temperature": 0.7,
+    "stream": true
+  }
+}
