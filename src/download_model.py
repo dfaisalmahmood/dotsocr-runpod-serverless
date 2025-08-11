@@ -8,8 +8,9 @@ from utils import timer_decorator
 
 BASE_DIR = "/" 
 TOKENIZER_PATTERNS = [["*.json", "tokenizer*"]]
+MODEL_PATTERNS = [["*.safetensors"], ["*.bin"], ["*.pt"]]
 # DotsOCR patch
-MODEL_PATTERNS = [["*.safetensors"], ["*.bin"], ["*.pt"], ["*.py"], ["*.txt"]]
+DOTSOCR_PATTERNS = [["*.py", "*.txt"]]
 
 def setup_env():
     if os.getenv("TESTING_DOWNLOAD") == "1":
@@ -27,7 +28,7 @@ def setup_env():
 @timer_decorator
 def download(name, revision, type, cache_dir):
     if type == "model":
-        pattern_sets = [model_pattern + TOKENIZER_PATTERNS[0] for model_pattern in MODEL_PATTERNS]
+        pattern_sets = [model_pattern + TOKENIZER_PATTERNS[0] + DOTSOCR_PATTERNS[0] for model_pattern in MODEL_PATTERNS]
     elif type == "tokenizer":
         pattern_sets = TOKENIZER_PATTERNS
     else:

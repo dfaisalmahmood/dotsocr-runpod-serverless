@@ -3,6 +3,9 @@ import logging
 import json
 import asyncio
 
+# PATCH: Import custom model to register with vLLM
+from src.dotsocr import modeling_dots_ocr_vllm
+
 from dotenv import load_dotenv
 from typing import AsyncGenerator, Optional
 import time

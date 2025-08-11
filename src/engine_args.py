@@ -17,7 +17,7 @@ DEFAULT_ARGS = {
     "disable_log_stats": os.getenv('DISABLE_LOG_STATS', 'False').lower() == 'true',
     "disable_log_requests": os.getenv('DISABLE_LOG_REQUESTS', 'False').lower() == 'true',
     # TODO: modify GPU_MEMORY_UTILIZATION to 0.95 before pushing to production
-    "gpu_memory_utilization": float(os.getenv('GPU_MEMORY_UTILIZATION', 0.75)),
+    "gpu_memory_utilization": float(os.getenv('GPU_MEMORY_UTILIZATION', 0.9)),
     "pipeline_parallel_size": int(os.getenv('PIPELINE_PARALLEL_SIZE', 1)),
     "tensor_parallel_size": int(os.getenv('TENSOR_PARALLEL_SIZE', 1)),
     "served_model_name": os.getenv('SERVED_MODEL_NAME', None),
@@ -32,7 +32,7 @@ DEFAULT_ARGS = {
     "kv_cache_dtype": os.getenv('KV_CACHE_DTYPE', 'auto'),
     "quantization_param_path": os.getenv('QUANTIZATION_PARAM_PATH', None),
     "seed": int(os.getenv('SEED', 0)),
-    "max_model_len": int(os.getenv('MAX_MODEL_LEN', 0)) or None,
+    "max_model_len": int(os.getenv('MAX_MODEL_LEN', 49152)) or None,
     "worker_use_ray": os.getenv('WORKER_USE_RAY', 'False').lower() == 'true',
     "distributed_executor_backend": os.getenv('DISTRIBUTED_EXECUTOR_BACKEND', None),
     "max_parallel_loading_workers": int(os.getenv('MAX_PARALLEL_LOADING_WORKERS', 0)) or None,
