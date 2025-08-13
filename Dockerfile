@@ -61,7 +61,10 @@ RUN sed -i '/^from vllm\.entrypoints\.cli\.main import main/a from src.dotsocr.m
 # Copy the rest of the src directory
 COPY src /src
 
-# COPY test_input.json /test_input.json
-
 # Start the handler
-CMD ["python3", "/src/handler.py", "--rp_serve_api"]
+# For testing
+# COPY test_input.json /test_input.json
+# CMD ["python3", "/src/handler.py", "--rp_serve_api", "--rp_api_host",  "0.0.0.0", "--rp_log_level", "INFO"]
+
+# For production
+CMD ["python3", "/src/handler.py"]
